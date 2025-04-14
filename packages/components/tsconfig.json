@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",
+      "module": "ESNext",
+      "lib": ["ES2020", "DOM", "DOM.Iterable"],
+      "strict": true,
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "experimentalDecorators": true, // Required for Lit decorators
+      "emitDecoratorMetadata": true,  // Optional, for some advanced use cases
+      "outDir": "dist",
+      "rootDir": "src",
+      "declaration": true             // Generate .d.ts files for type sharing
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "dist"]
+  }
