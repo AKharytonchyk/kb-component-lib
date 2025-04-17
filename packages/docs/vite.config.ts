@@ -20,5 +20,5 @@ export default defineConfig({
       },
     },
   ],
-  base: '/kb-component-lib/',
+  base: process.env.NODE_ENV === 'production' ? '/kb-component-lib/' : '/',
 });

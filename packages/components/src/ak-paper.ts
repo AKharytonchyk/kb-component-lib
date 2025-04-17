@@ -4,39 +4,36 @@ import { BackgroundComponent } from './ak-background';
 
 @customElement('ak-paper')
 export class AkPaper extends BackgroundComponent {
-  static styles =
-    css`
-      :host {
-        display: block;
-      }
+  static styles = css`
+    :host {
+      display: block;
+    }
 
-      .paper {
-        padding: var(--padding, 16px);
-        border-radius: var(--border-radius, 4px);
-        box-shadow: var(
-          --shadow,
-          0 1px 3px rgba(0, 0, 0, 0.1),
-          0 1px 2px rgba(0, 0, 0, 0.06)
-        );
-        border: var(--border, 1px solid transparent);
-        color: var(--text-color, #000);
-      }
+    .paper {
+      padding: var(--padding, 16px);
+      border-radius: var(--border-radius, 4px);
+      box-shadow: var(
+        --shadow,
+        0 1px 3px rgba(0, 0, 0, 0.1),
+        0 1px 2px rgba(0, 0, 0, 0.06)
+      );
+      border: var(--border, 1px solid transparent);
+      color: var(--text-color, #000);
+    }
 
-      .title {
-        margin: 0 0 8px 0;
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: var(--text-color, #000);
-      }
+    .title {
+      margin: 0 0 8px 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-color, #000);
+    }
 
-      .text {
-        margin: 0;
-        font-size: 1rem;
-        color: var(--text-color, #000);
-      }
-
-      ${super.styles}
-    `;
+    .text {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text-color, #000);
+    }
+  `;
 
   @property({ type: String }) title: string = 'Default Title';
   @property({ type: String }) text: string = 'Default Text';

@@ -10,13 +10,10 @@ import {
   Paper,
   Code,
   Grid,
-  Select,
   Switch,
   Textarea,
   ColorPicker,
   InputWrapper,
-  Radio,
-  Group,
   SegmentedControl,
 } from '@mantine/core';
 import { titleColors } from '../constants';

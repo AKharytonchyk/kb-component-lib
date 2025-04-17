@@ -3,13 +3,6 @@ import { property } from 'lit/decorators.js';
 import { checkCollorAccessibility } from './helpers';
 
 export class BackgroundComponent extends LitElement {
-  static styles = css`
-    :host {
-      display: block;
-      background: var(--background, #fff);
-    }
-  `;
-
   @property({ type: String }) backgroundStyle: 'solid' | 'gradient' = 'solid';
   @property({ type: String }) solidColor: string = '#fff';
   @property({ type: String }) gradientColor1: string = '#fff';
@@ -42,6 +35,8 @@ export class BackgroundComponent extends LitElement {
     return html`
       <style>
         :host {
+          display: block;
+          background: var(--background, #fff);
           --background: ${this.getBackgroundStyle()};
           --text-color: ${this.contrastTextColor};
         }
