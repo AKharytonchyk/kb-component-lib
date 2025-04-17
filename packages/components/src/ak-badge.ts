@@ -1,6 +1,6 @@
 import { html, css, PropertyValues, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { checkCollorAccessibility, getLighterColor } from './helpers'; // Adjust path as needed
+import { checkCollorAccessibility, getLighterColor } from './helpers'; 
 
 @customElement('ak-badge')
 export class AkBadge extends LitElement {

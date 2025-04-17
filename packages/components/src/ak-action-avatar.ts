@@ -1,6 +1,6 @@
 import { html, css, PropertyValues, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { getLighterColor } from './helpers'; // Adjust path as needed
+import { getLighterColor } from './helpers'; 
 
 @customElement('ak-action-avatar')
 export class AkActionAvatar extends LitElement {

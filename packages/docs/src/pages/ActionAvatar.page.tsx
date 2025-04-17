@@ -38,12 +38,12 @@ const ActionAvatarComponent = createComponent({
 }) as any as React.FC<AkActionAvatarProps>;
 
 const ActionAvatarDocs: React.FC = () => {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState('https://picsum.photos/id/237/200/300');
   const [text, setText] = useState('John Doe');
   const [icon, setIcon] = useState<'phone' | 'person' | 'email' | 'play' | ''>(
     ''
   );
-  const [additionalText, setAdditionalText] = useState('');
+  const [additionalText, setAdditionalText] = useState('Wouf Wouf');
   const [link, setLink] = useState('');
   const [color, setColor] = useState('#228be6'); // Default to blue hex
   const [size, setSize] = useState<'xs' | 'sm' | 'md' | 'lg' | 'xl'>('md');

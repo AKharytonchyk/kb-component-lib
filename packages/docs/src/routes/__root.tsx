@@ -117,6 +117,10 @@ function RootComponent() {
                 label="Paper"
                 to="/paper"
               />
+              <NavigationLink
+                label="Timeline"
+                to="/timeline"
+              />
             </Stack>
           </AppShell.Navbar>
           <AppShell.Main>

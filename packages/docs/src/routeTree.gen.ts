@@ -11,6 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as TimelineImport } from './routes/timeline'
 import { Route as PaperImport } from './routes/paper'
 import { Route as BannerImport } from './routes/banner'
 import { Route as BadgeImport } from './routes/badge'
@@ -20,6 +21,12 @@ import { Route as AccordionImport } from './routes/accordion'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const TimelineRoute = TimelineImport.update({
+  id: '/timeline',
+  path: '/timeline',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const PaperRoute = PaperImport.update({
   id: '/paper',
@@ -116,6 +123,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PaperImport
       parentRoute: typeof rootRoute
     }
+    '/timeline': {
+      id: '/timeline'
+      path: '/timeline'
+      fullPath: '/timeline'
+      preLoaderRoute: typeof TimelineImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -129,6 +143,7 @@ export interface FileRoutesByFullPath {
   '/badge': typeof BadgeRoute
   '/banner': typeof BannerRoute
   '/paper': typeof PaperRoute
+  '/timeline': typeof TimelineRoute
 }
 
 export interface FileRoutesByTo {
@@ -139,6 +154,7 @@ export interface FileRoutesByTo {
   '/badge': typeof BadgeRoute
   '/banner': typeof BannerRoute
   '/paper': typeof PaperRoute
+  '/timeline': typeof TimelineRoute
 }
 
 export interface FileRoutesById {
@@ -150,6 +166,7 @@ export interface FileRoutesById {
   '/badge': typeof BadgeRoute
   '/banner': typeof BannerRoute
   '/paper': typeof PaperRoute
+  '/timeline': typeof TimelineRoute
 }
 
 export interface FileRouteTypes {
@@ -162,6 +179,7 @@ export interface FileRouteTypes {
     | '/badge'
     | '/banner'
     | '/paper'
+    | '/timeline'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -171,6 +189,7 @@ export interface FileRouteTypes {
     | '/badge'
     | '/banner'
     | '/paper'
+    | '/timeline'
   id:
     | '__root__'
     | '/'
@@ -180,6 +199,7 @@ export interface FileRouteTypes {
     | '/badge'
     | '/banner'
     | '/paper'
+    | '/timeline'
   fileRoutesById: FileRoutesById
 }
 
@@ -191,6 +211,7 @@ export interface RootRouteChildren {
   BadgeRoute: typeof BadgeRoute
   BannerRoute: typeof BannerRoute
   PaperRoute: typeof PaperRoute
+  TimelineRoute: typeof TimelineRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -201,6 +222,7 @@ const rootRouteChildren: RootRouteChildren = {
   BadgeRoute: BadgeRoute,
   BannerRoute: BannerRoute,
   PaperRoute: PaperRoute,
+  TimelineRoute: TimelineRoute,
 }
 
 export const routeTree = rootRoute
@@ -219,7 +241,8 @@ export const routeTree = rootRoute
         "/alert",
         "/badge",
         "/banner",
-        "/paper"
+        "/paper",
+        "/timeline"
       ]
     },
     "/": {
@@ -242,6 +265,9 @@ export const routeTree = rootRoute
     },
     "/paper": {
       "filePath": "paper.tsx"
+    },
+    "/timeline": {
+      "filePath": "timeline.tsx"
     }
   }
 }
