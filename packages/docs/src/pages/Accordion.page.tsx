@@ -17,6 +17,7 @@ import {
   Grid,
   Switch,
   Textarea,
+  CopyButton,
 } from '@mantine/core';
 import { IconTrash } from '@tabler/icons-react';
 import {
@@ -291,9 +292,13 @@ const AccordionDocs: React.FC = () => {
       <Paper withBorder p="md">
         <Text size="lg">Generated HTML</Text>
         <Code block>{generatedHtml}</Code>
-        <Button onClick={copyToClipboard} color="blue" mt="md">
-          Copy HTML
-        </Button>
+        <CopyButton value={generatedHtml} timeout={2000}>
+          {({ copied, copy }) => (
+            <Button color={copied ? 'teal' : 'blue'} onClick={copy} w={"120px"} mt={10}>
+              {copied ? 'Copied HTML' : 'Copy HTML'}
+            </Button>
+          )}
+        </CopyButton>
       </Paper>
     </Stack>
   );

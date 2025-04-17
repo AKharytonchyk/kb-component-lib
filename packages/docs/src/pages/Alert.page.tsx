@@ -15,6 +15,7 @@ import {
   ColorPicker,
   InputWrapper,
   SegmentedControl,
+  CopyButton,
 } from '@mantine/core';
 import { titleColors } from '../constants';
 import BackgroundSelector, {
@@ -78,11 +79,6 @@ const AlertDocs: React.FC = () => {
   ${bodyContent ? `<div slot="">${bodyContent}</div>` : ''}
 </ak-alert>`;
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(generatedHtml);
-    alert('HTML copied to clipboard!');
-  };
-
   return (
     <Stack p="md" style={{ maxWidth: 1640, minWidth: 800, margin: '0 auto' }}>
       <Title order={2} size="h3">
@@ -113,7 +109,7 @@ const AlertDocs: React.FC = () => {
         <Grid.Col span={4}>
           <Text size="lg">Styles</Text>
           <Stack mt="md" gap={2}>
-          <SegmentedControl
+            <SegmentedControl
               data={[
                 { value: 'warn', label: 'Warn' },
                 { value: 'info', label: 'Info' },
@@ -203,9 +199,13 @@ const AlertDocs: React.FC = () => {
       <Paper withBorder p="md" mt="md">
         <Text size="lg">Generated HTML</Text>
         <Code block>{generatedHtml}</Code>
-        <Button onClick={copyToClipboard} color="blue" mt="md">
-          Copy HTML
-        </Button>
+        <CopyButton value={generatedHtml} timeout={2000}>
+          {({ copied, copy }) => (
+            <Button color={copied ? 'teal' : 'blue'} onClick={copy}  w={"120px"} mt={10}>
+              {copied ? 'Copied HTML' : 'Copy HTML'}
+            </Button>
+          )}
+        </CopyButton>
       </Paper>
     </Stack>
   );

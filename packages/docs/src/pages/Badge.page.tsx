@@ -16,6 +16,7 @@ import {
   InputWrapper,
   SegmentedControl,
   Input,
+  CopyButton,
 } from '@mantine/core';
 import { titleColors } from '../constants';
 import { ElementPreview } from '../components/ElementPreview';
@@ -46,12 +47,6 @@ const BadgeDocs: React.FC = () => {
   // Generate HTML string
   const generatedHtml = `<ak-badge variant="${variant}" color="${color}" size="${size}">${content}</ak-badge>`;
 
-  // Function to copy HTML to clipboard
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(generatedHtml);
-    alert('HTML copied to clipboard!');
-  };
-
   return (
     <Stack p="md" style={{ maxWidth: 1640, minWidth: 800, margin: '0 auto' }}>
       <Title order={2} size="h3">
@@ -76,13 +71,15 @@ const BadgeDocs: React.FC = () => {
               label="Content"
               description="Enter the content for the badge"
             >
-              <Input 
+              <Input
                 value={content}
                 onChange={(e) => setContent(e.currentTarget.value)}
                 placeholder="Enter badge content"
               />
             </InputWrapper>
-            <Text size="sm" mt={10} mb={10}>Variant</Text>
+            <Text size="sm" mt={10} mb={10}>
+              Variant
+            </Text>
             <SegmentedControl
               data={[
                 { value: 'filled', label: 'Filled' },
@@ -104,20 +101,22 @@ const BadgeDocs: React.FC = () => {
                 style={{ marginTop: 10 }}
               />
             </InputWrapper>
-            <Text size="sm" mt={10} mb={10}>Size</Text>
-              <SegmentedControl
-                data={[
-                  { value: 'xs', label: 'XS' },
-                  { value: 'sm', label: 'SM' },
-                  { value: 'md', label: 'MD' },
-                  { value: 'lg', label: 'LG' },
-                  { value: 'xl', label: 'XL' },
-                ]}
-                value={size}
-                onChange={(value) =>
-                  setSize(value as 'xs' | 'sm' | 'md' | 'lg' | 'xl')
-                }
-              />
+            <Text size="sm" mt={10} mb={10}>
+              Size
+            </Text>
+            <SegmentedControl
+              data={[
+                { value: 'xs', label: 'XS' },
+                { value: 'sm', label: 'SM' },
+                { value: 'md', label: 'MD' },
+                { value: 'lg', label: 'LG' },
+                { value: 'xl', label: 'XL' },
+              ]}
+              value={size}
+              onChange={(value) =>
+                setSize(value as 'xs' | 'sm' | 'md' | 'lg' | 'xl')
+              }
+            />
           </Stack>
         </Grid.Col>
       </Grid>
@@ -126,9 +125,13 @@ const BadgeDocs: React.FC = () => {
       <Paper withBorder p="md" mt="md">
         <Text size="lg">Generated HTML</Text>
         <Code block>{generatedHtml}</Code>
-        <Button onClick={copyToClipboard} color="blue" mt="md">
-          Copy HTML
-        </Button>
+        <CopyButton value={generatedHtml} timeout={2000}>
+          {({ copied, copy }) => (
+            <Button color={copied ? 'teal' : 'blue'} onClick={copy}  w={"120px"} mt={10}>
+              {copied ? 'Copied HTML' : 'Copy HTML'}
+            </Button>
+          )}
+        </CopyButton>
       </Paper>
     </Stack>
   );

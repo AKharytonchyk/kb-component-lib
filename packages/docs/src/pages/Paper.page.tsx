@@ -12,6 +12,7 @@ import {
   Code,
   Textarea,
   Grid,
+  CopyButton,
 } from '@mantine/core';
 import { loremIpsumText, loremIpsumTitle } from '../constants';
 import BackgroundSelector from '../components/BackgroundSelector';
@@ -44,7 +45,9 @@ const PaperComponent = createComponent({
 const ComponentDocs: React.FC = () => {
   const [title, setTitle] = useState<string>(loremIpsumTitle);
   const [text, setText] = useState<string>(loremIpsumText);
-  const [backgroundStyle, setBackgroundStyle] = useState<'solid' | 'gradient'>('solid');
+  const [backgroundStyle, setBackgroundStyle] = useState<'solid' | 'gradient'>(
+    'solid'
+  );
   const [solidColor, setSolidColor] = useState<string>('#fff');
   const [gradientColor1, setGradientColor1] = useState<string>('#fff');
   const [gradientColor2, setGradientColor2] = useState<string>('#ccc');
@@ -52,11 +55,6 @@ const ComponentDocs: React.FC = () => {
   const [gradientPercentage, setGradientPercentage] = useState<number>(50);
 
   const generatedHtml = `<ak-paper title="${title}" text="${text}" background-style="${backgroundStyle}" solid-color="${solidColor}" gradient-color1="${gradientColor1}" gradient-color2="${gradientColor2}" gradient-angle="${gradientAngle}" gradient-percentage="${gradientPercentage}"></ak-paper>`;
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(generatedHtml);
-    alert('HTML copied to clipboard!');
-  };
 
   return (
     <Stack p="md" style={{ maxWidth: 800, margin: '0 auto' }}>
@@ -83,20 +81,18 @@ const ComponentDocs: React.FC = () => {
         </Stack>
         <Paper>
           <Grid>
-            <Grid.Col
-              span={8}
-            >
+            <Grid.Col span={8}>
               <ElementPreview>
-              <PaperComponent
-                title={title}
-                text={text}
-                backgroundStyle={backgroundStyle}
-                solidColor={solidColor}
-                gradientColor1={gradientColor1}
-                gradientColor2={gradientColor2}
-                gradientAngle={gradientAngle}
-                gradientPercentage={gradientPercentage}
-              />
+                <PaperComponent
+                  title={title}
+                  text={text}
+                  backgroundStyle={backgroundStyle}
+                  solidColor={solidColor}
+                  gradientColor1={gradientColor1}
+                  gradientColor2={gradientColor2}
+                  gradientAngle={gradientAngle}
+                  gradientPercentage={gradientPercentage}
+                />
               </ElementPreview>
             </Grid.Col>
             <Grid.Col span={4}>
@@ -120,9 +116,13 @@ const ComponentDocs: React.FC = () => {
         <Stack>
           <Text size="lg">Generated HTML</Text>
           <Code block>{generatedHtml}</Code>
-          <Button onClick={copyToClipboard} color="blue">
-            Copy HTML
-          </Button>
+          <CopyButton value={generatedHtml} timeout={2000}>
+            {({ copied, copy }) => (
+              <Button color={copied ? 'teal' : 'blue'} onClick={copy}  w={"120px"} mt={10}>
+                {copied ? 'Copied HTML' : 'Copy HTML'}
+              </Button>
+            )}
+          </CopyButton>
         </Stack>
       </Stack>
     </Stack>

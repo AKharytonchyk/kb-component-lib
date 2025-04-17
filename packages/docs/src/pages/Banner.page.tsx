@@ -15,6 +15,7 @@ import {
   Slider,
   Group,
   Switch,
+  CopyButton,
 } from '@mantine/core';
 import { loremIpsumText, loremIpsumTitle } from '../constants';
 
@@ -50,11 +51,6 @@ const BannerDocs: React.FC = () => {
   }${title ? ` title="${title}"` : ''}${text ? ` text="${text}"` : ''}${
     link ? ` link="${link}"` : ''
   }${linkText ? ` link-text="${linkText}"` : ''} banner-height="${bannerHeight}" paralax="${parallax}"></ak-banner>`;
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(generatedHtml);
-    alert('HTML copied to clipboard!');
-  };
 
   return (
     <Stack p="md" style={{ maxWidth: 1640, minWidth: 800, margin: '0 auto' }}>
@@ -146,9 +142,13 @@ const BannerDocs: React.FC = () => {
       <Paper withBorder p="md" mt="md">
         <Text size="lg">Generated HTML</Text>
         <Code block>{generatedHtml}</Code>
-        <Button onClick={copyToClipboard} color="blue" mt="md">
-          Copy HTML
-        </Button>
+        <CopyButton value={generatedHtml} timeout={2000}>
+          {({ copied, copy }) => (
+            <Button color={copied ? 'teal' : 'blue'} onClick={copy}  w={"120px"} mt={10}>
+              {copied ? 'Copied HTML' : 'Copy HTML'}
+            </Button>
+          )}
+        </CopyButton>
       </Paper>
     </Stack>
   );

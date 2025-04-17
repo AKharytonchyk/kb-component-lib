@@ -125,7 +125,13 @@ export class AkAlert extends BackgroundComponent {
   }
 
   render() {
-    if (!this.isVisible) return html``;
+    if (!this.isVisible) return html`
+      <style>
+        :host {
+          display: none;
+        }
+      </style>
+    `;
 
     const styles = {
       border: this.variant === 'outline' ? `1px solid ${this.color}` : 'none',
