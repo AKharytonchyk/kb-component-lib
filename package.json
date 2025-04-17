@@ -8,7 +8,7 @@
   "scripts": {
     "build:components": "npm run build -w packages/components",
     "start:docs": "npm run dev -w packages/docs",
-    "build:all": "npm run build --workspaces"
+    "build:all": "npm run build -w @ak/components && npm run build -w @ak/docs"
   },
   "devDependencies": {
     "eslint": "^9.22.0",
