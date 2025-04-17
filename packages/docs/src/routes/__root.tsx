@@ -102,6 +102,14 @@ function RootComponent() {
                 to="/alert"
               />
               <NavigationLink
+                label="Action Avatar"
+                to="/action-avatar"
+              />
+              <NavigationLink
+                label="Badge"
+                to="/badge"
+              />
+              <NavigationLink
                 label="Banner"
                 to="/banner"
               />

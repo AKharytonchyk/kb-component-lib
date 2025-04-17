@@ -13,7 +13,9 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as PaperImport } from './routes/paper'
 import { Route as BannerImport } from './routes/banner'
+import { Route as BadgeImport } from './routes/badge'
 import { Route as AlertImport } from './routes/alert'
+import { Route as ActionAvatarImport } from './routes/action-avatar'
 import { Route as AccordionImport } from './routes/accordion'
 import { Route as IndexImport } from './routes/index'
 
@@ -31,9 +33,21 @@ const BannerRoute = BannerImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const BadgeRoute = BadgeImport.update({
+  id: '/badge',
+  path: '/badge',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const AlertRoute = AlertImport.update({
   id: '/alert',
   path: '/alert',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ActionAvatarRoute = ActionAvatarImport.update({
+  id: '/action-avatar',
+  path: '/action-avatar',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -67,11 +81,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccordionImport
       parentRoute: typeof rootRoute
     }
+    '/action-avatar': {
+      id: '/action-avatar'
+      path: '/action-avatar'
+      fullPath: '/action-avatar'
+      preLoaderRoute: typeof ActionAvatarImport
+      parentRoute: typeof rootRoute
+    }
     '/alert': {
       id: '/alert'
       path: '/alert'
       fullPath: '/alert'
       preLoaderRoute: typeof AlertImport
+      parentRoute: typeof rootRoute
+    }
+    '/badge': {
+      id: '/badge'
+      path: '/badge'
+      fullPath: '/badge'
+      preLoaderRoute: typeof BadgeImport
       parentRoute: typeof rootRoute
     }
     '/banner': {
@@ -96,7 +124,9 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/accordion': typeof AccordionRoute
+  '/action-avatar': typeof ActionAvatarRoute
   '/alert': typeof AlertRoute
+  '/badge': typeof BadgeRoute
   '/banner': typeof BannerRoute
   '/paper': typeof PaperRoute
 }
@@ -104,7 +134,9 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/accordion': typeof AccordionRoute
+  '/action-avatar': typeof ActionAvatarRoute
   '/alert': typeof AlertRoute
+  '/badge': typeof BadgeRoute
   '/banner': typeof BannerRoute
   '/paper': typeof PaperRoute
 }
@@ -113,24 +145,50 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/accordion': typeof AccordionRoute
+  '/action-avatar': typeof ActionAvatarRoute
   '/alert': typeof AlertRoute
+  '/badge': typeof BadgeRoute
   '/banner': typeof BannerRoute
   '/paper': typeof PaperRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/accordion' | '/alert' | '/banner' | '/paper'
+  fullPaths:
+    | '/'
+    | '/accordion'
+    | '/action-avatar'
+    | '/alert'
+    | '/badge'
+    | '/banner'
+    | '/paper'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/accordion' | '/alert' | '/banner' | '/paper'
-  id: '__root__' | '/' | '/accordion' | '/alert' | '/banner' | '/paper'
+  to:
+    | '/'
+    | '/accordion'
+    | '/action-avatar'
+    | '/alert'
+    | '/badge'
+    | '/banner'
+    | '/paper'
+  id:
+    | '__root__'
+    | '/'
+    | '/accordion'
+    | '/action-avatar'
+    | '/alert'
+    | '/badge'
+    | '/banner'
+    | '/paper'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccordionRoute: typeof AccordionRoute
+  ActionAvatarRoute: typeof ActionAvatarRoute
   AlertRoute: typeof AlertRoute
+  BadgeRoute: typeof BadgeRoute
   BannerRoute: typeof BannerRoute
   PaperRoute: typeof PaperRoute
 }
@@ -138,7 +196,9 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccordionRoute: AccordionRoute,
+  ActionAvatarRoute: ActionAvatarRoute,
   AlertRoute: AlertRoute,
+  BadgeRoute: BadgeRoute,
   BannerRoute: BannerRoute,
   PaperRoute: PaperRoute,
 }
@@ -155,7 +215,9 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/accordion",
+        "/action-avatar",
         "/alert",
+        "/badge",
         "/banner",
         "/paper"
       ]
@@ -166,8 +228,14 @@ export const routeTree = rootRoute
     "/accordion": {
       "filePath": "accordion.tsx"
     },
+    "/action-avatar": {
+      "filePath": "action-avatar.tsx"
+    },
     "/alert": {
       "filePath": "alert.tsx"
+    },
+    "/badge": {
+      "filePath": "badge.tsx"
     },
     "/banner": {
       "filePath": "banner.tsx"

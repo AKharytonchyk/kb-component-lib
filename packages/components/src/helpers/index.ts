@@ -27,3 +27,13 @@ export function checkCollorAccessibility(
 
   return isAccessible(text);
 }
+
+/**
+ * Generates a lighter version of the given color using tinycolor2.
+ * @param color - The input color in any valid CSS format (e.g., hex, rgb, etc.).
+ * @param amount - The amount to lighten the color (0-100, default: 80 for a very light version).
+ * @returns The lighter color as a hex string.
+ */
+export function getLighterColor(color: string, amount: number = 80): string {
+  return tinycolor(color).lighten(amount).toHexString();
+}

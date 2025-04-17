@@ -1,4 +1,3 @@
-// packages/docs/src/AlertDocs.tsx
 import React, { useState } from 'react';
 import { createComponent } from '@lit/react';
 import { AkAlert } from '@ak/components';
