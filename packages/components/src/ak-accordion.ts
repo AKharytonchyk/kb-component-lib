@@ -112,44 +112,31 @@ export class AkAccordion extends LitElement {
     }
 
     .link-button:hover {
-      background-color: var(
-        --button-hover-background,
-        #005a9e
-      ); 
-      border-color: var(
-        --button-hover-border,
-        #005a9e
-      ); 
+      background-color: var(--button-hover-background, #005a9e);
+      border-color: var(--button-hover-border, #005a9e);
     }
 
     .link-button:active {
-      background-color: var(
-        --button-active-background,
-        #00447a
-      ); 
-      border-color: var(
-        --button-active-border,
-        #00447a
-      ); 
+      background-color: var(--button-active-background, #00447a);
+      border-color: var(--button-active-border, #00447a);
     }
 
     .link-button:disabled {
-      background-color: var(
-        --button-disabled-background,
-        #e0e0e0
-      ); 
-      color: var(--button-disabled-color, #a0a0a0); 
-      cursor: not-allowed; 
-      border-color: var(
-        --button-disabled-border,
-        #e0e0e0
-      ); 
+      background-color: var(--button-disabled-background, #e0e0e0);
+      color: var(--button-disabled-color, #a0a0a0);
+      cursor: not-allowed;
+      border-color: var(--button-disabled-border, #e0e0e0);
     }
   `;
 
   // Properties for the items and styling
-  @property({ type: Array }) items: AccordionItem[] = [];
-  @property({ type: String }) headerBackground: string = '';
+  @property({
+    type: Array,
+    converter: (input) =>
+      (input as string)?.length > 0 ? JSON.parse(input as string) : [],
+  })
+  items: AccordionItem[] = [];
+  @property({ type: String, attribute: 'header-background' }) headerBackground: string = '';
   @property({ type: String }) headerHoverBackground: string = '';
   @property({ type: String }) contentBackground: string = '';
   @property({ type: String }) itemBorder: string = '';

@@ -60,13 +60,13 @@ export class AkAlert extends BackgroundComponent {
     }
   `;
 
-  @property({ type: String }) variant: 'filled' | 'light' | 'outline' = 'light';
-  @property({ type: String }) title: string = '';
-  @property({ type: Boolean }) withCloseButton: boolean = false;
-  @property({ type: String }) borderRadius: string = '';
-  @property({ type: String }) padding: string = '';
-  @property({ type: String }) color: string = '#ff922b';
-  @property({ type: String }) iconType: 'warn' | 'info' | 'error' = 'warn';
+  @property({ type: String, attribute: 'variant' }) variant: 'filled' | 'light' | 'outline' = 'light';
+  @property({ type: String, attribute: 'title' }) title: string = '';
+  @property({ type: Boolean, attribute: 'with-close-button', converter: (input) => input === 'true'}) withCloseButton: boolean = false;
+  @property({ type: String, attribute: 'border-radius' }) borderRadius: string = '';
+  @property({ type: String, attribute: 'padding' }) padding: string = '';
+  @property({ type: String, attribute: 'color' }) color: string = '#ff922b';
+  @property({ type: String, attribute: 'icon-type' }) iconType: 'warn' | 'info' | 'error' = 'warn';
 
   @state() private isVisible: boolean = true;
 
@@ -132,7 +132,7 @@ export class AkAlert extends BackgroundComponent {
       icon: this.variant === 'filled' ? '' : this.color,
     };
 
-    if (this.variant === 'filled') {
+    if (this.variant !== 'filled') {
       this.solidColor = this.color;
     }
 

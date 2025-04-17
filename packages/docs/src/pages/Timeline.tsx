@@ -66,15 +66,7 @@ const TimelineDocs: React.FC = () => {
   };
 
   // Generate HTML string
-  const generatedHtml = `<ak-timeline line-color="${lineColor}" active-items="${activeItems}">
-  ${items.map(item => `
-    <div slot="item">
-      <div slot="title">${item.title}</div>
-      <div slot="description">${item.description}</div>
-      <div slot="date">${item.date}</div>
-    </div>
-  `).join('')}
-</ak-timeline>`;
+  const generatedHtml = `<ak-timeline line-color="${lineColor}" active-items="${activeItems}" items='${JSON.stringify(items)}'></ak-timeline>`;
 
   // Function to copy HTML to clipboard
   const copyToClipboard = () => {

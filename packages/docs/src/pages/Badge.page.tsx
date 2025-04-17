@@ -15,6 +15,7 @@ import {
   ColorPicker,
   InputWrapper,
   SegmentedControl,
+  Input,
 } from '@mantine/core';
 import { titleColors } from '../constants';
 import { ElementPreview } from '../components/ElementPreview';
@@ -71,6 +72,17 @@ const BadgeDocs: React.FC = () => {
         <Grid.Col span={4}>
           <Text size="lg">Styles</Text>
           <Stack mt="md" gap={2}>
+            <InputWrapper
+              label="Content"
+              description="Enter the content for the badge"
+            >
+              <Input 
+                value={content}
+                onChange={(e) => setContent(e.currentTarget.value)}
+                placeholder="Enter badge content"
+              />
+            </InputWrapper>
+            <Text size="sm" mt={10} mb={10}>Variant</Text>
             <SegmentedControl
               data={[
                 { value: 'filled', label: 'Filled' },

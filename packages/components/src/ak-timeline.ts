@@ -16,14 +16,6 @@ export class AkTimeline extends LitElement {
       padding-left: 40px; /* Space for the timeline line and circles */
     }
 
-    .timeline-line {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: #d9d9d9; /* Default gray background */
-    }
-
     .timeline-item {
       position: relative;
       margin-bottom: 24px;
@@ -76,9 +68,15 @@ export class AkTimeline extends LitElement {
     }
   `;
 
-  @property({ type: Array }) items: TimelineItem[] = [];
-  @property({ type: String }) lineColor: string = '#228be6'; // Default blue
-  @property({ type: Number }) activeItems: number = 0;
+  @property({
+    type: Array,
+    attribute: 'items',
+    converter: (value) =>
+      value && (value as string).length > 2 ? JSON.parse(value) : [],
+  })
+  items: TimelineItem[] = [];
+  @property({ type: String, attribute: 'line-color' }) lineColor: string = '#228be6'; // Default blue
+  @property({ type: Number, attribute: 'active-items' }) activeItems: number = 0;
 
   private getTimelineItems() {
     return this.items.map((item, index) => {
@@ -86,11 +84,14 @@ export class AkTimeline extends LitElement {
       const lineIsActive = index < this.activeItems - 1;
 
       // Calculate the height of the line segment
-      const lineSegmentHeight = index < this.items.length - 1 ? 'calc(100% + 24px)' : '0';
+      const lineSegmentHeight =
+        index < this.items.length - 1 ? 'calc(100% + 24px)' : '0';
 
       return html`
         <div class="timeline-item">
-          <div class="timeline-circle ${circleIsActive ? '' : 'inactive'}"></div>
+          <div
+            class="timeline-circle ${circleIsActive ? '' : 'inactive'}"
+          ></div>
           ${index < this.items.length - 1
             ? html`
                 <div

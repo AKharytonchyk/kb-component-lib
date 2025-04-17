@@ -109,13 +109,13 @@ export class AkBanner extends LitElement {
     }
   `;
 
-  @property({ type: String }) backgroundImage: string = '';
-  @property({ type: String }) title: string = '';
-  @property({ type: String }) text: string = '';
-  @property({ type: String }) link: string = '';
-  @property({ type: String }) linkText: string = 'Learn More';
-  @property({ type: Number }) bannerHeight: number = 400;
-  @property({ type: Boolean }) parallax: boolean = true;
+  @property({ type: String, attribute: 'background-image' }) backgroundImage: string = '';
+  @property({ type: String, attribute: 'title' }) title: string = '';
+  @property({ type: String, attribute: 'text' }) text: string = '';
+  @property({ type: String, attribute: 'link' }) link: string = '';
+  @property({ type: String, attribute: 'link-text' }) linkText: string = 'Learn More';
+  @property({ type: Number, attribute: 'banner-height' }) bannerHeight: number = 400;
+  @property({ type: Boolean, attribute: 'parallax' }) parallax: boolean = true;
 
   updated(changedProperties: Map<string | number | symbol, unknown>) {
     super.updated(changedProperties);

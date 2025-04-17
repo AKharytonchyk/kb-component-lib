@@ -47,7 +47,7 @@ export class AkBadge extends LitElement {
   }
 
   render() {
-    const background = this.variant === 'filled' ? this.color : this.variant === 'light' ? getLighterColor(this.color, 60) : '#fff';
+    const background = this.variant === 'filled' ? this.color : this.variant === 'light' ? getLighterColor(this.color, 40) : '#fff';
 
     let textColor: string;
     if (this.variant === 'filled') {

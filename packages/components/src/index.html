@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KB Components Debug</title>
+  </head>
+  <body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4;">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      h1 {
+        color: #333;
+      }
+    </style>
+
+
+    <h1>KB Components Debug Page</h1>
+
+    <!-- Add all custom elements for debugging -->
+    <ak-accordion items='[{"title":"Lorem Ipsum","text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},{"title":"Item with links","text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","links":[{"text":"Link 1","href":"https://example.com"}]},{"title":"MD Item 1","md":"This is **bold** text with a [link](https://example.com)."},{"title":"MD Item 2","md":"- Item one\n- Item two\n- [Click me](https://example.com)"}]' header-background="#f9f9f9"  title-color="#000" ></ak-accordion>
+    <ak-alert 
+  variant="light"
+  color="#ff922b"
+  title="Alert title"
+  icon-type="warn"
+  
+  
+  
+>
+  <div slot="">Lorem ipsum dolor sit, amet consectetur adipiscing elit. At officiis, quae tempore necessitatibus placeat saepe.</div>
+</ak-alert>
+<ak-action-avatar image="https://picsum.photos/id/237/200/300" text="John Doe" additional-text="Wouf Wouf" color="#228be6" size="md"></ak-action-avatar>
+<ak-badge variant="filled" color="#228be6" size="md">BADGE</ak-badge>
+<ak-banner background-image="https://picsum.photos/1280/1280" title="Lorem Ipsum" text="Lorem Ipsum" link-text="Learn More" banner-height="400" paralax="true"></ak-banner>
+<ak-paper title="Lorem Ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." background-style="solid" solid-color="#fff" gradient-color1="#fff" gradient-color2="#ccc" gradient-angle="90" gradient-percentage="50"></ak-paper>
+<ak-timeline line-color="#228be6" active-items="2" items='[{"title":"New branch","description":"You’ve created new branch fix-notifications from master","date":"2 hours ago"},{"title":"Commits","description":"You’ve pushed 23 commits to fix-notifications branch","date":"52 minutes ago"},{"title":"Pull request","description":"You’ve submitted a pull request Fix incorrect notification message (#187)","date":"54 minutes ago"},{"title":"Code review","description":"Robert Gluesticker left a code review on your pull request","date":"12 minutes ago"}]'></ak-timeline>
+    <!-- Include the bundle script -->
+    <script src="bundle.min.js"></script>
+  </body>
+</html>

@@ -70,14 +70,13 @@ export class AkActionAvatar extends LitElement {
     }
   `;
 
-  @property({ type: String }) image: string = '';
-  @property({ type: String }) text: string = '';
-  @property({ type: String }) icon: 'phone' | 'person' | 'email' | 'play' | '' =
-    '';
-  @property({ type: String }) additionalText: string = '';
-  @property({ type: String }) link: string = '';
-  @property({ type: String }) color: string = '#228be6'; // Default to blue hex
-  @property({ type: String }) size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' = 'md'; // Default size
+  @property({ type: String, attribute: 'image' }) image: string = '';
+  @property({ type: String, attribute: 'text' }) text: string = '';
+  @property({ type: String, attribute: 'icon' }) icon: 'phone' | 'person' | 'email' | 'play' | '' = '';
+  @property({ type: String, attribute: 'additional-text' }) additionalText: string = '';
+  @property({ type: String, attribute: 'link' }) link: string = '';
+  @property({ type: String, attribute: 'color' }) color: string = '#228be6';
+  @property({ type: String, attribute: 'size' }) size: 'xs' | 'sm' | 'md' | 'lg' | 'xl' = 'md';
 
   private getSizeStyles() {
     switch (this.size) {
