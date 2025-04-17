@@ -130,14 +130,10 @@ export class AkAlert extends BackgroundComponent {
     const styles = {
       border: this.variant === 'outline' ? `1px solid ${this.color}` : 'none',
       icon: this.variant === 'filled' ? '' : this.color,
+      background: this.variant !== 'filled' ? '#fff' : 'transparent',
     };
 
-    if (this.variant !== 'filled') {
-      this.solidColor = this.color;
-    }
-
     return html`
-      ${this.variant === 'filled' ? super.render() : ''}
       <style>
         :host {
           --border: ${styles.border};
@@ -146,8 +142,10 @@ export class AkAlert extends BackgroundComponent {
           --close-button-hover-color: ${styles.icon};
           --border-radius: ${this.borderRadius || '8px'};
           --padding: ${this.padding || '16px'};
+          --background: ${styles.background};
         }
       </style>
+      ${this.variant === 'filled' ? super.render() : ''}
       <div class="alert">
         ${this.iconType ? html`<div class="icon">${this.getIcon()}</div>` : ''}
         <div class="content">
