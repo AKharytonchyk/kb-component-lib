@@ -11,7 +11,7 @@ export default defineConfig({
     {
       name: 'copy-lit-bundle',
       writeBundle() {
-        const source = resolve(__dirname, '../components/dist/bundle.js');
+        const source = resolve(__dirname, '../components/dist/bundle.min.js');
         const destination = resolve(__dirname, 'dist/assets/lit-bundle.js');
         const destDir = dirname(destination);
         mkdirSync(destDir, { recursive: true });
