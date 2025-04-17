@@ -12,6 +12,6 @@
       "rootDir": "src",
       "declaration": true             // Generate .d.ts files for type sharing
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "custom.d.ts"],
     "exclude": ["node_modules", "dist"]
   }

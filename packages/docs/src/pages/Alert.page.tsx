@@ -24,13 +24,14 @@ import { titleColors } from '../constants';
 import BackgroundSelector, {
   BackgroundControlProps,
 } from '../components/BackgroundSelector';
+import { ElementPreview } from '../components/ElementPreview';
 
 // Define the props interface for AkAlert
 interface AkAlertProps {
   variant: 'filled' | 'light' | 'outline';
   color: string;
   title?: string;
-  icon?: string;
+  iconType?: 'warn' | 'info' | 'error';
   withCloseButton?: boolean;
   children?: React.ReactNode;
   backgroundStyle?: 'solid' | 'gradient';
@@ -52,12 +53,12 @@ const AlertDocs: React.FC = () => {
   const [variant, setVariant] = useState<'filled' | 'light' | 'outline'>(
     'light'
   );
+  const [iconType, setIconType] = useState<'warn' | 'info' | 'error'>('warn');
   const [color, setColor] = useState('#ff922b');
   const [title, setTitle] = useState('Alert title');
   const [bodyContent, setBodyContent] = useState(
     'Lorem ipsum dolor sit, amet consectetur adipiscing elit. At officiis, quae tempore necessitatibus placeat saepe.'
-  ); // Renamed from bodyText to bodyContent
-  const [icon, setIcon] = useState('⚠');
+  );
   const [withCloseButton, setWithCloseButton] = useState(false);
 
   // backgrounControl
@@ -69,22 +70,18 @@ const AlertDocs: React.FC = () => {
   const [gradientAngle, setGradientAngle] = useState(0);
   const [gradientPercentage, setGradientPercentage] = useState(50);
 
-  // Generate HTML string, including the body content as slotted content
   const generatedHtml = `<ak-alert 
   variant="${variant}"
   color="${color}"
-  title="${title}"
-  icon="${icon}" ${variant === 'filled' ? `backgroundStyle="${backgroundStyle}"` : ''}
-  ${variant === 'filled' ? `solidColor="${solidColor}"` : ''}
-  ${variant === 'filled' && backgroundStyle === 'gradient' ? `gradientColor1="${gradientColor1}"` : ''}
-  ${variant === 'filled' && backgroundStyle === 'gradient' ? `gradientColor2="${gradientColor2}"` : ''}
-  ${variant === 'filled' && backgroundStyle === 'gradient' ? `gradientAngle="${gradientAngle}"` : ''}
+  ${title ? `title="${title}"` : ''}
+  ${iconType ? `iconType="${iconType}"` : ''}
   ${withCloseButton ? `withCloseButton` : ''}
+  ${variant === 'filled' && backgroundStyle === 'solid' ? `solidColor="${solidColor}"` : ''}
+  ${variant === 'filled' && backgroundStyle === 'gradient' ? `gradientColor1="${gradientColor1}" gradientColor2="${gradientColor2}" gradientAngle="${gradientAngle}" gradientPercentage="${gradientPercentage}"` : ''}
 >
-  <div slot="">${bodyContent}</div>
+  ${bodyContent ? `<div slot="">${bodyContent}</div>` : ''}
 </ak-alert>`;
 
-  // Function to copy HTML to clipboard
   const copyToClipboard = () => {
     navigator.clipboard.writeText(generatedHtml);
     alert('HTML copied to clipboard!');
@@ -97,14 +94,13 @@ const AlertDocs: React.FC = () => {
       </Title>
 
       <Grid>
-        <Grid.Col span={8} style={{ backgroundColor: '#f5f5f5' }}>
-          <Text size="lg">Preview</Text>
-          <div style={{ position: 'sticky', top: 100 }}>
+        <Grid.Col span={8}>
+          <ElementPreview>
             <AlertComponent
               variant={variant}
               color={color}
               title={title}
-              icon={icon}
+              iconType={iconType}
               withCloseButton={withCloseButton}
               backgroundStyle={backgroundStyle}
               solidColor={solidColor}
@@ -115,12 +111,23 @@ const AlertDocs: React.FC = () => {
             >
               <div slot="" dangerouslySetInnerHTML={{ __html: bodyContent }} />
             </AlertComponent>
-          </div>
+          </ElementPreview>
         </Grid.Col>
 
         <Grid.Col span={4}>
           <Text size="lg">Styles</Text>
           <Stack mt="md" gap={2}>
+          <SegmentedControl
+              data={[
+                { value: 'warn', label: 'Warn' },
+                { value: 'info', label: 'Info' },
+                { value: 'error', label: 'Error' },
+              ]}
+              value={iconType}
+              onChange={(value) =>
+                setIconType(value as 'warn' | 'info' | 'error')
+              }
+            />
             <SegmentedControl
               data={[
                 { value: 'filled', label: 'Filled' },
@@ -192,13 +199,6 @@ const AlertDocs: React.FC = () => {
             placeholder="Enter alert message"
             autosize
             minRows={2}
-          />
-          <TextInput
-            label="Icon"
-            description="Enter an emoji or character for the icon (optional)"
-            value={icon}
-            onChange={(e) => setIcon(e.currentTarget.value)}
-            placeholder="⚠"
           />
         </Stack>
       </Paper>

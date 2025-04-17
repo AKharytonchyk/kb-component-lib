@@ -25,6 +25,7 @@ import {
   loremIpsumTitle,
   titleColors,
 } from '../constants';
+import { ElementPreview } from '../components/ElementPreview';
 
 // Define the props interface for AkAccordion
 interface AkAccordionProps {
@@ -43,7 +44,11 @@ const AccordionComponent = createComponent({
 const AccordionDocs: React.FC = () => {
   const [items, setItems] = useState([
     { title: loremIpsumTitle, text: loremIpsumText },
-    { title: "Item with links", text: loremIpsumText, links: [{ text: 'Link 1', href: 'https://example.com' }] },
+    {
+      title: 'Item with links',
+      text: loremIpsumText,
+      links: [{ text: 'Link 1', href: 'https://example.com' }],
+    },
     {
       title: 'MD Item 1',
       md: 'This is **bold** text with a [link](https://example.com).',
@@ -68,7 +73,7 @@ const AccordionDocs: React.FC = () => {
 
   const updateItem = (
     index: number,
-    field: 'title' | 'text' | 'md' ,
+    field: 'title' | 'text' | 'md',
     value: string
   ) => {
     const newItems = [...items];
@@ -99,47 +104,46 @@ const AccordionDocs: React.FC = () => {
         Ak Accordion Component
       </Title>
 
-      <Paper withBorder p="md" mt="md">
-        <Grid>
-          <Grid.Col span={8}>
-            <Text size="lg">Preview</Text>
+      <Grid>
+        <Grid.Col span={8}>
+          <ElementPreview>
             <AccordionComponent
               items={items}
               headerBackground={headerBackground}
               titleColor={titleColor}
             />
-          </Grid.Col>
-          <Grid.Col span={4}>
-            <Text size="lg">Styles</Text>
-            <Stack mt="md" gap={16}>
-              <InputWrapper
-                label="Header Background Color"
-                description="Select the background color for accordion headers"
-              >
-                <ColorPicker
-                  value={headerBackground}
-                  onChange={setHeaderBackground}
-                  withPicker={false}
-                  format="hex"
-                  swatches={backgroundColors}
-                />
-              </InputWrapper>
-              <InputWrapper
-                label="Title Color"
-                description="Select the color for the accordion titles"
-              >
-                <ColorPicker
-                  value={titleColor}
-                  onChange={setTitleColor}
-                  withPicker={false}
-                  format="hex"
-                  swatches={[...titleColors, '#fff']}
-                />
-              </InputWrapper>
-            </Stack>
-          </Grid.Col>
-        </Grid>
-      </Paper>
+          </ElementPreview>
+        </Grid.Col>
+        <Grid.Col span={4}>
+          <Text size="lg">Styles</Text>
+          <Stack mt="md" gap={16}>
+            <InputWrapper
+              label="Header Background Color"
+              description="Select the background color for accordion headers"
+            >
+              <ColorPicker
+                value={headerBackground}
+                onChange={setHeaderBackground}
+                withPicker={false}
+                format="hex"
+                swatches={backgroundColors}
+              />
+            </InputWrapper>
+            <InputWrapper
+              label="Title Color"
+              description="Select the color for the accordion titles"
+            >
+              <ColorPicker
+                value={titleColor}
+                onChange={setTitleColor}
+                withPicker={false}
+                format="hex"
+                swatches={[...titleColors, '#fff']}
+              />
+            </InputWrapper>
+          </Stack>
+        </Grid.Col>
+      </Grid>
       <Paper withBorder p="md">
         <Text size="lg">Accordion Items</Text>
         <Stack mt="xs">
@@ -212,59 +216,71 @@ const AccordionDocs: React.FC = () => {
                 style={{ flex: 1 }}
               />
               {!useMarkdown[index] && (
-      <Stack style={{ width: '100%' }}>
-        <Text size="sm">
-          Links
-        </Text>
-        {item.links?.map((link, linkIndex) => (
-          <Group key={linkIndex} align="end" style={{ width: '100%' }}>
-            <TextInput
-              label="Name"
-              value={link.text}
-              onChange={(e) =>
-                updateItemLinks(index, 'links', [
-                  ...(item.links || []).map((l, i) =>
-                    i === linkIndex ? { ...l, text: e.currentTarget.value } : l
-                  ),
-                ])
-              }
-              placeholder="Enter link name"
-              style={{ flex: 1 }}
-            />
-            <TextInput
-              label="Href"
-              value={link.href}
-              onChange={(e) =>
-                updateItemLinks(index, 'links', [
-                  ...(item.links || []).map((l, i) =>
-                    i === linkIndex ? { ...l, href: e.currentTarget.value } : l
-                  ),
-                ])
-              }
-              placeholder="Enter link URL"
-              style={{ flex: 2 }}
-            />
-            <ActionIcon
-              color="red"
-              onClick={() =>
-                updateItemLinks(index, 'links', item.links?.filter((_, i) => i !== linkIndex))
-              }
-            >
-              <IconTrash size={16} />
-            </ActionIcon>
-          </Group>
-        ))}
-        <Button
-          fullWidth
-          onClick={() =>
-            updateItemLinks(index, 'links', [...(item.links || []), { text: '', href: '' }])
-          }
-        >
-          Add Link
-        </Button>
-      </Stack>
-    )}
-
+                <Stack style={{ width: '100%' }}>
+                  <Text size="sm">Links</Text>
+                  {item.links?.map((link, linkIndex) => (
+                    <Group
+                      key={linkIndex}
+                      align="end"
+                      style={{ width: '100%' }}
+                    >
+                      <TextInput
+                        label="Name"
+                        value={link.text}
+                        onChange={(e) =>
+                          updateItemLinks(index, 'links', [
+                            ...(item.links || []).map((l, i) =>
+                              i === linkIndex
+                                ? { ...l, text: e.currentTarget.value }
+                                : l
+                            ),
+                          ])
+                        }
+                        placeholder="Enter link name"
+                        style={{ flex: 1 }}
+                      />
+                      <TextInput
+                        label="Href"
+                        value={link.href}
+                        onChange={(e) =>
+                          updateItemLinks(index, 'links', [
+                            ...(item.links || []).map((l, i) =>
+                              i === linkIndex
+                                ? { ...l, href: e.currentTarget.value }
+                                : l
+                            ),
+                          ])
+                        }
+                        placeholder="Enter link URL"
+                        style={{ flex: 2 }}
+                      />
+                      <ActionIcon
+                        color="red"
+                        onClick={() =>
+                          updateItemLinks(
+                            index,
+                            'links',
+                            item.links?.filter((_, i) => i !== linkIndex)
+                          )
+                        }
+                      >
+                        <IconTrash size={16} />
+                      </ActionIcon>
+                    </Group>
+                  ))}
+                  <Button
+                    fullWidth
+                    onClick={() =>
+                      updateItemLinks(index, 'links', [
+                        ...(item.links || []),
+                        { text: '', href: '' },
+                      ])
+                    }
+                  >
+                    Add Link
+                  </Button>
+                </Stack>
+              )}
             </Group>
           ))}
           <Button onClick={addItem} mt="md">

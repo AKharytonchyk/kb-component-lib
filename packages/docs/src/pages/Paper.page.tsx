@@ -6,17 +6,16 @@ import {
   Title,
   Text,
   TextInput,
-  Checkbox,
-  ColorPicker,
   Button,
   Stack,
   Paper,
   Code,
   Textarea,
   Grid,
-  InputWrapper,
 } from '@mantine/core';
-import { backgroundColors, loremIpsumText, loremIpsumTitle, textColors, titleColors } from '../constants';
+import { loremIpsumText, loremIpsumTitle } from '../constants';
+import BackgroundSelector from '../components/BackgroundSelector';
+import { ElementPreview } from '../components/ElementPreview';
 
 export interface AkPaperProps {
   title?: string;
@@ -28,6 +27,12 @@ export interface AkPaperProps {
   shadow?: boolean;
   titleColor?: string;
   textColor?: string;
+  backgroundStyle?: 'solid' | 'gradient';
+  solidColor?: string;
+  gradientColor1?: string;
+  gradientColor2?: string;
+  gradientAngle?: number;
+  gradientPercentage?: number;
 }
 
 const PaperComponent = createComponent({
@@ -36,60 +41,17 @@ const PaperComponent = createComponent({
   react: React,
 }) as any as React.FC<AkPaperProps>;
 
-const colors = [
-  // Whites and Light Grays
-  '#FFFFFF', // White
-  '#FBFAFA', // Snow
-  '#F6F6F6', // Grey 1
-  '#EFEFEF', // Grey 2
-  '#BDBDBD', // Grey 3
-
-  // Dark Grays and Blacks
-  '#6C6C6C', // Grey 4
-  '#4B4B4B', // Grey 5
-  '#2F2F2F', // Grey 6
-  '#222222', // Graphite
-  '#060606', // Night
-
-  // Yellows and Oranges
-  '#FFC000', // Yellow
-  '#F58041', // Orange
-
-  // Reds and Pinks
-  '#F15D45', // Coral
-  '#B896FF', // Lilac
-
-  // Blues and Teals
-  '#76CDD8', // EPAM Blue
-  '#ABDBDD', // Light Blue
-  '#0091AC', // Teal
-  '#0078C2', // Aqua
-  '#0047FF', // Cobalt
-  '#4A71BD', // Slate
-  '#7BA8FF', // Sky
-
-  // Purples
-  '#8453D2', // Iris
-
-  // Greens and Mints
-  '#00FFF0', // Mint
-  '#00F6FF', // Sea
-
-  // Navy
-  '#10303E', // Navy
-];
-
 const ComponentDocs: React.FC = () => {
   const [title, setTitle] = useState<string>(loremIpsumTitle);
   const [text, setText] = useState<string>(loremIpsumText);
-  const [color, setColor] = useState<string>('#fff');
-  const [shadow, setShadow] = useState<boolean>(false);
+  const [backgroundStyle, setBackgroundStyle] = useState<'solid' | 'gradient'>('solid');
+  const [solidColor, setSolidColor] = useState<string>('#fff');
+  const [gradientColor1, setGradientColor1] = useState<string>('#fff');
+  const [gradientColor2, setGradientColor2] = useState<string>('#ccc');
+  const [gradientAngle, setGradientAngle] = useState<number>(90);
+  const [gradientPercentage, setGradientPercentage] = useState<number>(50);
 
-  const [titleColor, setTitleColor] = useState<string>('#000');
-  const [textColor, setTextColor] = useState<string>('#000');
-  const [backgroundColor, setBackgroundColor] = useState<string>('#fff');
-
-  const generatedHtml = `<ak-paper title="${title}" text="${text}" color="${color}"${shadow ? ' shadow' : ''}></ak-paper>`;
+  const generatedHtml = `<ak-paper title="${title}" text="${text}" background-style="${backgroundStyle}" solid-color="${solidColor}" gradient-color1="${gradientColor1}" gradient-color2="${gradientColor2}" gradient-angle="${gradientAngle}" gradient-percentage="${gradientPercentage}"></ak-paper>`;
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(generatedHtml);
@@ -123,64 +85,35 @@ const ComponentDocs: React.FC = () => {
           <Grid>
             <Grid.Col
               span={8}
-              style={{ display: 'flex', alignItems: 'center' }}
             >
+              <ElementPreview>
               <PaperComponent
                 title={title}
                 text={text}
-                shadow={shadow}
-                titleColor={titleColor}
-                textColor={textColor}
-                backgroundColor={backgroundColor}
+                backgroundStyle={backgroundStyle}
+                solidColor={solidColor}
+                gradientColor1={gradientColor1}
+                gradientColor2={gradientColor2}
+                gradientAngle={gradientAngle}
+                gradientPercentage={gradientPercentage}
               />
+              </ElementPreview>
             </Grid.Col>
             <Grid.Col span={4}>
-              <Stack p={10} gap={16}>
-                <InputWrapper
-                  label="Title Color"
-                  description="Select the color for the title text"
-                >
-                  <ColorPicker
-                    value={titleColor}
-                    onChange={setTitleColor}
-                    withPicker={false}
-                    format="hex"
-                    swatches={titleColors}
-                  />
-                </InputWrapper>
-                <InputWrapper
-                  label="Text Color"
-                  description="Select the text color for the paper"
-                >
-                  <ColorPicker
-                    value={textColor}
-                    onChange={setTextColor}
-                    withPicker={false}
-                    format="hex"
-                    swatches={textColors}
-                  />
-                </InputWrapper>
-                <InputWrapper
-                  label="Background Color"
-                  description="Select the background color for the paper"
-                >
-                  <ColorPicker
-                    value={backgroundColor}
-                    onChange={setBackgroundColor}
-                    withPicker={false}
-                    format="hex"
-                    swatches={backgroundColors}
-                  />
-                </InputWrapper>
-
-                <InputWrapper>
-                  <Checkbox
-                    label="Shadow"
-                    checked={shadow}
-                    onChange={(e) => setShadow(e.currentTarget.checked)}
-                  />
-                </InputWrapper>
-              </Stack>
+              <BackgroundSelector
+                backgroundStyle={backgroundStyle}
+                solidColor={solidColor}
+                gradientColor1={gradientColor1}
+                gradientColor2={gradientColor2}
+                gradientAngle={gradientAngle}
+                gradientPercentage={gradientPercentage}
+                onBackgroundStyleChange={setBackgroundStyle}
+                onSolidColorChange={setSolidColor}
+                onGradientColor1Change={setGradientColor1}
+                onGradientColor2Change={setGradientColor2}
+                onGradientAngleChange={setGradientAngle}
+                onGradientPercentageChange={setGradientPercentage}
+              />
             </Grid.Col>
           </Grid>
         </Paper>

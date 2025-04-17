@@ -45,7 +45,7 @@ const BackgroundSelector: React.FC<BackgroundControlProps> = ({
   );
 
   return (
-    <Stack gap={16}>
+    <Stack gap={16} mb={16}>
       <SegmentedControl
         data={[
           { value: 'solid', label: 'Solid' },
@@ -104,13 +104,13 @@ const BackgroundSelector: React.FC<BackgroundControlProps> = ({
                 label="Gradient Percentage"
                 value={gradientPercentage}
                 onChange={(value) => onGradientPercentageChange(value)}
-                min={10}
-                max={90}
+                min={20}
+                max={70}
                 step={1}
                 marks={[
-                  { value: 10, label: '10%' },
+                  { value: 20, label: '20%' },
                   { value: 50, label: '50%' },
-                  { value: 90, label: '90%' },
+                  { value: 70, label: '70%' },
                 ]}
                 styles={{
                   markLabel: {
@@ -118,6 +118,7 @@ const BackgroundSelector: React.FC<BackgroundControlProps> = ({
                     color: '#000',
                   },
                 }}
+                style={{ flexGrow: 1, marginLeft: 16 }}
               />
             </Group>
           </InputWrapper>
