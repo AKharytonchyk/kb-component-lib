@@ -1,13 +1,17 @@
 import { html, css, PropertyValues } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { BackgroundComponent } from './ak-background';
+import { defaultStyles } from './helpers';
 
 @customElement('ak-paper')
 export class AkPaper extends BackgroundComponent {
   static styles = css`
     :host {
       display: block;
+      
     }
+
+    ${defaultStyles}
 
     .paper {
       padding: var(--padding, 16px);

@@ -2,6 +2,7 @@ import { html, css, LitElement } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { Renderer, marked } from 'marked';
+import { defaultStyles } from './helpers';
 
 interface AccordionItem {
   title: string;
@@ -30,10 +31,13 @@ export class AkAccordion extends LitElement {
 
   static styles = css`
     :host {
+      all: initial;
       display: block;
       border-radius: var(--border-radius, 4px);
       overflow: hidden;
     }
+
+    ${defaultStyles}
 
     .item {
       border-bottom: var(--item-border, 1px solid #e0e0e0);

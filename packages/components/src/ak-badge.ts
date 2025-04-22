@@ -1,11 +1,12 @@
 import { html, css, PropertyValues, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { checkCollorAccessibility, getLighterColor } from './helpers'; 
+import { checkCollorAccessibility, defaultStyles, getLighterColor } from './helpers'; 
 
 @customElement('ak-badge')
 export class AkBadge extends LitElement {
   static styles = css`
     :host {
+      all: initial;
       display: inline-block;
       border-radius: var(--border-radius, 12px);
       padding: var(--padding, 4px 12px);
@@ -17,8 +18,8 @@ export class AkBadge extends LitElement {
       text-align: center;
       font-weight: 800;
       text-transform: uppercase;
-    }
-  `;
+      font-family: 'Inter', sans-serif;
+    }`;
 
   @property({ type: String }) variant: 'filled' | 'light' | 'outline' = 'filled';
   @property({ type: String }) color: string = '#228be6';

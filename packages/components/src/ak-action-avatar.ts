@@ -1,11 +1,12 @@
 import { html, css, PropertyValues, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { getLighterColor } from './helpers'; 
+import { defaultStyles, getLighterColor } from './helpers'; 
 
 @customElement('ak-action-avatar')
 export class AkActionAvatar extends LitElement {
   static styles = css`
     :host {
+      all: initial;
       display: inline-flex;
       align-items: center;
       border-radius: var(--border-radius, 50%);
@@ -16,6 +17,8 @@ export class AkActionAvatar extends LitElement {
       text-decoration: none;
       gap: 8px;
     }
+
+    ${defaultStyles}
 
     .avatar-link {
       display: flex;

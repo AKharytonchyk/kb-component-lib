@@ -1,5 +1,6 @@
 import { html, css, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { defaultStyles } from './helpers';
 
 interface TimelineItem {
   title: string;
@@ -11,10 +12,13 @@ interface TimelineItem {
 export class AkTimeline extends LitElement {
   static styles = css`
     :host {
+      all: initial;
       display: block;
       position: relative;
       padding-left: 40px; /* Space for the timeline line and circles */
     }
+
+    ${defaultStyles}
 
     .timeline-item {
       position: relative;

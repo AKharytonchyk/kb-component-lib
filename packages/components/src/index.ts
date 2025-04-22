@@ -6,3 +6,6 @@ export { AkBadge } from './ak-badge';
 export { AkActionAvatar } from './ak-action-avatar';
 export { AkTimeline } from './ak-timeline';
 export { BackgroundComponent } from './ak-background';
+export { AkGridItem } from './ak-grid-item';
+export { AkGridGroup } from './ak-grid-group';
+export { AkFlexGroup } from './ak-flex-group';

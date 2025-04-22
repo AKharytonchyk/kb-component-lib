@@ -1,15 +1,19 @@
 import { html, css, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { defaultStyles } from './helpers';
 
 @customElement('ak-banner')
 export class AkBanner extends LitElement {
   static styles = css`
     :host {
+      all: initial;
       display: block;
       position: relative;
       height: var(--banner-height, 400px); 
       overflow: hidden;
     }
+
+    ${defaultStyles}
 
     .banner {
       position: absolute;

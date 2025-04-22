@@ -1,11 +1,13 @@
 import { html, css, PropertyValues } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { BackgroundComponent } from './ak-background';
+import { defaultStyles } from './helpers';
 
 @customElement('ak-alert')
 export class AkAlert extends BackgroundComponent {
   static styles = css`
     :host {
+      all: initial;
       display: block;
       border-radius: var(--border-radius, 4px);
       padding: var(--padding, 16px);
@@ -16,6 +18,8 @@ export class AkAlert extends BackgroundComponent {
       background: var(--background, #fff);
     }
 
+    ${defaultStyles}
+    
     .alert {
       display: flex;
       align-items: flex-start;

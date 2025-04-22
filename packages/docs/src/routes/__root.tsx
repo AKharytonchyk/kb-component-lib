@@ -114,6 +114,10 @@ function RootComponent() {
                 to="/banner"
               />
               <NavigationLink
+                label="Row Align"
+                to="/group"
+              />
+              <NavigationLink
                 label="Paper"
                 to="/paper"
               />

@@ -1,6 +1,6 @@
 import { LitElement, PropertyValues, css, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import { checkCollorAccessibility } from './helpers';
+import { checkCollorAccessibility, defaultStyles } from './helpers';
 
 export class BackgroundComponent extends LitElement {
   @property({ type: String, attribute: 'background-style' }) backgroundStyle: 'solid' | 'gradient' = 'solid';
@@ -49,6 +49,8 @@ export class BackgroundComponent extends LitElement {
           --background: ${this.getBackgroundStyle()};
           --text-color: ${this.contrastTextColor};
         }
+
+        ${defaultStyles}
       </style>
     `;
   }

@@ -72,7 +72,7 @@ const AlertDocs: React.FC = () => {
   color="${color}"
   ${title ? `title="${title}"` : ''}
   ${iconType ? `icon-type="${iconType}"` : ''}
-  ${withCloseButton ? `with-close-button` : ''}
+  ${withCloseButton ? `with-close-button="true"` : ''}
   ${variant === 'filled' && backgroundStyle === 'solid' ? `solid-color="${solidColor}"` : ''}
   ${variant === 'filled' && backgroundStyle === 'gradient' ? `gradient-color1="${gradientColor1}" gradient-color2="${gradientColor2}" gradient-angle="${gradientAngle}" gradient-percentage="${gradientPercentage}"` : ''}
 >

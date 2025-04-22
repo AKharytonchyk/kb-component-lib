@@ -1,3 +1,4 @@
+import { css } from 'lit';
 import tinycolor from 'tinycolor2';
 
 /**
@@ -37,3 +38,10 @@ export function checkCollorAccessibility(
 export function getLighterColor(color: string, amount: number = 80): string {
   return tinycolor(color).lighten(amount).toHexString();
 }
+
+export const defaultStyles = css`
+  :host {
+    font-family: "Open Sans", sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+  }`
