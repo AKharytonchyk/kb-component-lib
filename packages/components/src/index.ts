@@ -9,3 +9,4 @@ export { BackgroundComponent } from './ak-background';
 export { AkGridItem } from './ak-grid-item';
 export { AkGridGroup } from './ak-grid-group';
 export { AkFlexGroup } from './ak-flex-group';
+export { AkCard } from './ak-card';

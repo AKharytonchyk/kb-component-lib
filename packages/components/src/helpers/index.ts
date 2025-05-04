@@ -39,6 +39,16 @@ export function getLighterColor(color: string, amount: number = 80): string {
   return tinycolor(color).lighten(amount).toHexString();
 }
 
+/**
+ * Generates a darker version of the given color using tinycolor2.
+ * @param color - The input color in any valid CSS format (e.g., hex, rgb, etc.).
+ * @param amount - The amount to darken the color (0-100, default: 10 for a slightly darker version).
+ * @returns The darker color as a hex string.
+ */
+export function getDarkerColor(color: string, amount: number = 10): string {
+  return tinycolor(color).darken(amount).toHexString();
+}
+
 export const defaultStyles = css`
   :host {
     font-family: "Open Sans", sans-serif;

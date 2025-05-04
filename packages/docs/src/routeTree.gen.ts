@@ -14,6 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as TimelineImport } from './routes/timeline'
 import { Route as PaperImport } from './routes/paper'
 import { Route as GroupImport } from './routes/group'
+import { Route as CardImport } from './routes/card'
 import { Route as BannerImport } from './routes/banner'
 import { Route as BadgeImport } from './routes/badge'
 import { Route as AlertImport } from './routes/alert'
@@ -38,6 +39,12 @@ const PaperRoute = PaperImport.update({
 const GroupRoute = GroupImport.update({
   id: '/group',
   path: '/group',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CardRoute = CardImport.update({
+  id: '/card',
+  path: '/card',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -123,6 +130,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BannerImport
       parentRoute: typeof rootRoute
     }
+    '/card': {
+      id: '/card'
+      path: '/card'
+      fullPath: '/card'
+      preLoaderRoute: typeof CardImport
+      parentRoute: typeof rootRoute
+    }
     '/group': {
       id: '/group'
       path: '/group'
@@ -156,6 +170,7 @@ export interface FileRoutesByFullPath {
   '/alert': typeof AlertRoute
   '/badge': typeof BadgeRoute
   '/banner': typeof BannerRoute
+  '/card': typeof CardRoute
   '/group': typeof GroupRoute
   '/paper': typeof PaperRoute
   '/timeline': typeof TimelineRoute
@@ -168,6 +183,7 @@ export interface FileRoutesByTo {
   '/alert': typeof AlertRoute
   '/badge': typeof BadgeRoute
   '/banner': typeof BannerRoute
+  '/card': typeof CardRoute
   '/group': typeof GroupRoute
   '/paper': typeof PaperRoute
   '/timeline': typeof TimelineRoute
@@ -181,6 +197,7 @@ export interface FileRoutesById {
   '/alert': typeof AlertRoute
   '/badge': typeof BadgeRoute
   '/banner': typeof BannerRoute
+  '/card': typeof CardRoute
   '/group': typeof GroupRoute
   '/paper': typeof PaperRoute
   '/timeline': typeof TimelineRoute
@@ -195,6 +212,7 @@ export interface FileRouteTypes {
     | '/alert'
     | '/badge'
     | '/banner'
+    | '/card'
     | '/group'
     | '/paper'
     | '/timeline'
@@ -206,6 +224,7 @@ export interface FileRouteTypes {
     | '/alert'
     | '/badge'
     | '/banner'
+    | '/card'
     | '/group'
     | '/paper'
     | '/timeline'
@@ -217,6 +236,7 @@ export interface FileRouteTypes {
     | '/alert'
     | '/badge'
     | '/banner'
+    | '/card'
     | '/group'
     | '/paper'
     | '/timeline'
@@ -230,6 +250,7 @@ export interface RootRouteChildren {
   AlertRoute: typeof AlertRoute
   BadgeRoute: typeof BadgeRoute
   BannerRoute: typeof BannerRoute
+  CardRoute: typeof CardRoute
   GroupRoute: typeof GroupRoute
   PaperRoute: typeof PaperRoute
   TimelineRoute: typeof TimelineRoute
@@ -242,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   AlertRoute: AlertRoute,
   BadgeRoute: BadgeRoute,
   BannerRoute: BannerRoute,
+  CardRoute: CardRoute,
   GroupRoute: GroupRoute,
   PaperRoute: PaperRoute,
   TimelineRoute: TimelineRoute,
@@ -263,6 +285,7 @@ export const routeTree = rootRoute
         "/alert",
         "/badge",
         "/banner",
+        "/card",
         "/group",
         "/paper",
         "/timeline"
@@ -285,6 +308,9 @@ export const routeTree = rootRoute
     },
     "/banner": {
       "filePath": "banner.tsx"
+    },
+    "/card": {
+      "filePath": "card.tsx"
     },
     "/group": {
       "filePath": "group.tsx"

@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>KB Components Debug</title>
-  </head>
-  <body style="font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4;">
+    <title>Cloud Computing Basics - KB Showcase</title>
+    <script src="bundle.min.js"></script>
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -17,33 +16,116 @@
         flex-direction: column;
         gap: 20px;
       }
-      h1 {
+      h1, h2, h3 {
         color: #333;
+      }
+      .section {
+        margin-bottom: 20px;
       }
     </style>
 
 
-    <h1>KB Components Debug Page</h1>
+    <h1>Understanding Cloud Computing Basics</h1>
 
-    <!-- Add all custom elements for debugging -->
-    <ak-accordion items='[{"title":"Lorem Ipsum","text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."},{"title":"Item with links","text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.","links":[{"text":"Link 1","href":"https://example.com"}]},{"title":"MD Item 1","md":"This is **bold** text with a [link](https://example.com)."},{"title":"MD Item 2","md":"- Item one\n- Item two\n- [Click me](https://example.com)"}]' header-background="#f9f9f9"  title-color="#000" ></ak-accordion>
-    <ak-alert 
-  variant="light"
-  color="#ff922b"
-  title="Alert title"
-  icon-type="warn"
-  
-  
-  
->
-  <div slot="">Lorem ipsum dolor sit, amet consectetur adipiscing elit. At officiis, quae tempore necessitatibus placeat saepe.</div>
-</ak-alert>
-<ak-action-avatar image="https://picsum.photos/id/237/200/300" text="John Doe" additional-text="Wouf Wouf" color="#228be6" size="md"></ak-action-avatar>
-<ak-badge variant="filled" color="#228be6" size="md">BADGE</ak-badge>
-<ak-banner background-image="https://picsum.photos/1280/1280" title="Lorem Ipsum" text="Lorem Ipsum" link-text="Learn More" banner-height="400" paralax="true"></ak-banner>
-<ak-paper title="Lorem Ipsum" text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." background-style="solid" solid-color="#fff" gradient-color1="#fff" gradient-color2="#ccc" gradient-angle="90" gradient-percentage="50"></ak-paper>
-<ak-timeline line-color="#228be6" active-items="2" items='[{"title":"New branch","description":"You’ve created new branch fix-notifications from master","date":"2 hours ago"},{"title":"Commits","description":"You’ve pushed 23 commits to fix-notifications branch","date":"52 minutes ago"},{"title":"Pull request","description":"You’ve submitted a pull request Fix incorrect notification message (#187)","date":"54 minutes ago"},{"title":"Code review","description":"Robert Gluesticker left a code review on your pull request","date":"12 minutes ago"}]'></ak-timeline>
-    <!-- Include the bundle script -->
-    <script src="bundle.min.js"></script>
+    <!-- Alert Section -->
+    <ak-alert variant="filled" color="#ff922b" title="Important Notice" icon-type="warn">
+      <div slot="">Ensure your data is backed up before migrating to the cloud.</div>
+    </ak-alert>
+
+    <!-- Banner Section -->
+    <ak-banner 
+      background-image="https://picsum.photos/1280/720" 
+      title="Cloud Computing" 
+      text="Learn the fundamentals of cloud computing and how it can benefit your organization." 
+      link="https://example.com/learn-more" 
+      link-text="Learn More" 
+      banner-height="300" 
+      parallax="true">
+    </ak-banner>
+
+    <!-- Accordion Section -->
+    <ak-accordion items='[
+      {"title":"What is Cloud Computing?","text":"Cloud computing is the delivery of computing services over the internet."},
+      {"title":"Benefits of Cloud Computing","text":"Scalability, cost-efficiency, and accessibility are key benefits."},
+      {"title":"Types of Cloud Services","text":"Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS)."}
+    ]'>
+    </ak-accordion>
+
+    <!-- Badge Section -->
+    <div class="section">
+      <h2>Key Concepts</h2>
+      <ak-badge variant="filled" color="#228be6" size="md">Cloud</ak-badge>
+      <ak-badge variant="filled" color="#ff922b" size="md">IaaS</ak-badge>
+      <ak-badge variant="filled" color="#8453D2" size="md">PaaS</ak-badge>
+      <ak-badge variant="filled" color="#00FFF0" size="md">SaaS</ak-badge>
+    </div>
+
+    <!-- Flex Group Section with Cards -->
+    <div class="section">
+      <h2>Featured Resources</h2>
+      <ak-flex-group gap="16px">
+        <ak-card 
+          image-url="https://picsum.photos/400/200" 
+          title="Cloud Security Best Practices" 
+          text="Learn how to secure your cloud infrastructure effectively." 
+          button-text="Read More" 
+          button-link="https://example.com/cloud-security">
+        </ak-card>
+        <ak-card 
+          image-url="https://picsum.photos/400/200?grayscale" 
+          title="Cost Optimization in Cloud" 
+          text="Discover strategies to optimize your cloud spending." 
+          button-text="Explore" 
+          button-link="https://example.com/cost-optimization">
+        </ak-card>
+        <ak-card 
+          image-url="https://picsum.photos/400/200?blur" 
+          title="Cloud Migration Strategies" 
+          text="Understand the best practices for migrating to the cloud." 
+          button-text="Learn More" 
+          button-link="https://example.com/cloud-migration">
+        </ak-card>
+      </ak-flex-group>
+    </div>
+
+    <!-- Grid Group Section with Papers -->
+    <div class="section">
+      <h2>Cloud Computing Insights</h2>
+      <ak-grid-group columns="3" gap="16px">
+        <ak-paper title="Introduction to Cloud" text="Cloud computing is revolutionizing IT infrastructure."></ak-paper>
+        <ak-paper title="Hybrid Cloud" text="Combining private and public clouds for flexibility."></ak-paper>
+        <ak-paper title="Multi-Cloud Strategy" text="Leveraging multiple cloud providers for resilience."></ak-paper>
+        <ak-paper title="Cloud Security" text="Ensuring data protection in the cloud."></ak-paper>
+        <ak-paper title="Cost Management" text="Optimizing cloud expenses effectively."></ak-paper>
+        <ak-paper title="Future of Cloud" text="Exploring trends and innovations in cloud computing."></ak-paper>
+      </ak-grid-group>
+    </div>
+
+    <!-- Timeline Section -->
+    <ak-timeline line-color="#228be6" active-items="2" items='[
+      {"title":"Concept Introduced","description":"Cloud computing was first introduced in the early 2000s.","date":"2000"},
+      {"title":"Adoption Growth","description":"Organizations began adopting cloud services rapidly.","date":"2010"},
+      {"title":"Current Trends","description":"Hybrid and multi-cloud strategies are now common.","date":"2025"}
+    ]'>
+    </ak-timeline>
+
+    <!-- Action Avatar Section -->
+    <div class="section">
+      <h2>Contact Our Experts</h2>
+      <ak-action-avatar 
+        image="https://picsum.photos/id/237/200/300" 
+        text="John Doe" 
+        additional-text="Cloud Specialist" 
+        color="#228be6" 
+        size="md">
+      </ak-action-avatar>
+      <ak-action-avatar 
+        image="https://picsum.photos/id/238/200/300" 
+        text="Jane Smith" 
+        additional-text="IT Consultant" 
+        color="#ff922b" 
+        size="md">
+      </ak-action-avatar>
+    </div>
   </body>
 </html>
