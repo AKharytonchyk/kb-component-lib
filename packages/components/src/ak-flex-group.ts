@@ -40,7 +40,6 @@ export class AkFlexGroup extends LitElement {
   @property({ type: String, attribute: 'gap' }) gap: string = '16px';
 
   private updateSlotStyles(nodes: Element[]) {
-    console.warn('updateSlotStyles called');
     nodes.forEach((node) => {
       if (node.nodeType === Node.ELEMENT_NODE) {
         node.classList.add('wrapper');

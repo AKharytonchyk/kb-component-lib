@@ -27,7 +27,6 @@ interface AkGridGroupProps {
   children: React.ReactNode;
 }
 
-
 const FlexGroupComponent = createComponent({
   tagName: 'ak-flex-group',
   elementClass: AkFlexGroup,
@@ -49,12 +48,15 @@ const whiteRectDiv = `
 const GroupDocs: React.FC = () => {
   // Flex Group state
   const [flexGap, setFlexGap] = useState('16px');
-  const [flexItemsHtml, setFlexItemsHtml] = useState([1,2,3].map(() => whiteRectDiv).join('\n'));
+  const [flexItemsHtml, setFlexItemsHtml] = useState(
+    [1, 2, 3].map(() => whiteRectDiv).join('\n')
+  );
 
   // Grid Group (Fixed) state
   const [fixedColumns, setFixedColumns] = useState(3);
   const [fixedGap, setFixedGap] = useState('16px');
-  const [fixedItemsHtml, setFixedItemsHtml] = useState(`
+  const [fixedItemsHtml, setFixedItemsHtml] = useState(
+    `
 <ak-alert variant="filled" color="#ff922b" title="Alert 1" icon-type="warn">
   <div slot="">This is an alert message.</div>
 </ak-alert>
@@ -65,20 +67,8 @@ const GroupDocs: React.FC = () => {
 </ak-alert>
 <ak-paper title="Paper 2" text="Another paper component."></ak-paper>
 <ak-badge variant="filled" color="#ff922b" radius="12px" size="md">BADGE 2</ak-badge>
-  `.trim());
-
-  // Generate HTML strings for each variant
-  const flexGroupHtml = `
-    <ak-flex-group gap="${flexGap}" _html="${flexItemsHtml}">
-      ${flexItemsHtml}
-    </ak-flex-group>
-  `;
-
-  const fixedGroupHtml = `
-    <ak-grid-group columns="${fixedColumns}" gap="${fixedGap}">
-      ${fixedItemsHtml}
-    </ak-grid-group>
-  `;
+  `.trim()
+  );
 
   // Function to copy HTML to clipboard
   const copyToClipboard = (html: string) => {
@@ -88,12 +78,43 @@ const GroupDocs: React.FC = () => {
 
   // Render items for preview
   const renderFlexItems = () => (
-    <div slot="wrapper" dangerouslySetInnerHTML={{ __html: flexItemsHtml || '<div style="background: #f0f0f0; padding: 16px; text-align: center;">Preview</div>' }} />
+    <div
+      slot="wrapper"
+      dangerouslySetInnerHTML={{
+        __html:
+          flexItemsHtml ||
+          '<div style="background: #f0f0f0; padding: 16px; text-align: center;">Preview</div>',
+      }}
+    />
   );
 
   const renderFixedItems = () => (
-    <div slot="wrapper" dangerouslySetInnerHTML={{ __html: fixedItemsHtml || '<div style="background: #f0f0f0; padding: 16px; text-align: center;">Preview</div>' }} />
+    <div
+      slot="wrapper"
+      dangerouslySetInnerHTML={{
+        __html:
+          fixedItemsHtml ||
+          '<div style="background: #f0f0f0; padding: 16px; text-align: center;">Preview</div>',
+      }}
+    />
   );
+
+  // Generate HTML strings for each variant
+  const flexGroupHtml = `
+  <ak-flex-group gap="${flexGap}">
+    <div slot="wrapper" class="wrapper">
+      ${flexItemsHtml}
+    </div>
+  </ak-flex-group>
+  `;
+
+  const fixedGroupHtml = `
+  <ak-grid-group columns="${fixedColumns}" gap="${fixedGap}">
+    <div slot="wrapper" class="wrapper">
+      ${fixedItemsHtml}
+    </div>
+  </ak-grid-group>
+  `;
 
   return (
     <Stack p="md" style={{ maxWidth: 1640, minWidth: 800, margin: '0 auto' }}>
@@ -127,7 +148,9 @@ const GroupDocs: React.FC = () => {
             </Stack>
           </Grid.Col>
         </Grid>
-        <Text mt="md" size="lg">Items (Paste Lit Component HTML)</Text>
+        <Text mt="md" size="lg">
+          Items (Paste Lit Component HTML)
+        </Text>
         <Stack mt="xs">
           <Textarea
             label="Components HTML"
@@ -138,9 +161,15 @@ const GroupDocs: React.FC = () => {
             rows={5}
           />
         </Stack>
-        <Text mt="md" size="lg">Generated HTML</Text>
+        <Text mt="md" size="lg">
+          Generated HTML
+        </Text>
         <Code block>{flexGroupHtml}</Code>
-        <Button onClick={() => copyToClipboard(flexGroupHtml)} color="blue" mt="md">
+        <Button
+          onClick={() => copyToClipboard(flexGroupHtml)}
+          color="blue"
+          mt="md"
+        >
           Copy HTML
         </Button>
       </Paper>
@@ -179,7 +208,9 @@ const GroupDocs: React.FC = () => {
             </Stack>
           </Grid.Col>
         </Grid>
-        <Text mt="md" size="lg">Items (Paste Lit Component HTML)</Text>
+        <Text mt="md" size="lg">
+          Items (Paste Lit Component HTML)
+        </Text>
         <Stack mt="xs">
           <Textarea
             label="Components HTML"
@@ -190,9 +221,15 @@ const GroupDocs: React.FC = () => {
             rows={5}
           />
         </Stack>
-        <Text mt="md" size="lg">Generated HTML</Text>
+        <Text mt="md" size="lg">
+          Generated HTML
+        </Text>
         <Code block>{fixedGroupHtml}</Code>
-        <Button onClick={() => copyToClipboard(fixedGroupHtml)} color="blue" mt="md">
+        <Button
+          onClick={() => copyToClipboard(fixedGroupHtml)}
+          color="blue"
+          mt="md"
+        >
           Copy HTML
         </Button>
       </Paper>

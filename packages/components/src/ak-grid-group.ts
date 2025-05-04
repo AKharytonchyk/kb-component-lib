@@ -4,6 +4,49 @@ import { defaultStyles } from './helpers';
 
 @customElement('ak-grid-group')
 export class AkGridGroup extends LitElement {
+  constructor() {
+    super();
+    this.mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'childList') {
+          const slot = this.shadowRoot!.querySelector('slot');
+          const nodes = slot?.assignedElements({ flatten: true }) || [];
+          this.updateSlotStyles(nodes);
+        }
+      });
+    });
+  }
+
+  private mutationObserver: MutationObserver;
+
+  private updateSlotStyles(nodes: Element[]) {
+    nodes.forEach((node) => {
+      if (node.nodeType === Node.ELEMENT_NODE) {
+        node.classList.add('wrapper');
+        node.setAttribute(
+          'style',
+          `grid-template-columns: repeat(${this.columns}, 1fr);`
+        );
+
+        if (!node.hasAttribute('initialized')) {
+          node.setAttribute('initialized', 'true');
+          this.mutationObserver.observe(node, {
+            childList: true,
+            subtree: true,
+          });
+        }
+
+        Array.from(node.children).forEach((child) => {
+          if (child.nodeType === Node.ELEMENT_NODE) {
+            child.setAttribute(
+              'style', 'grid-column: span 1;'
+            );
+          }
+        });
+      }
+    });
+  }
+
   static styles = css`
     :host {
       display: block;
@@ -24,35 +67,12 @@ export class AkGridGroup extends LitElement {
   firstUpdated() {
     const slot = this.shadowRoot!.querySelector('slot');
     const nodes = slot!.assignedElements({ flatten: true });
-
-    nodes.forEach((node) => {
-      if (node.nodeType === Node.ELEMENT_NODE) {
-        node.classList.add('wrapper');
-        const hasGridItems = Array.from(node.children).some(child => child.tagName.toLowerCase() === 'ak-grid-item');
-        if (!hasGridItems) {
-          (node as HTMLElement).style.gridTemplateColumns = `repeat(${this.columns}, 1fr)`;
-        }
-
-        Array.from(node.children).forEach((child) => {
-          if (child.nodeType === Node.ELEMENT_NODE && child.tagName.toLowerCase() !== 'ak-grid-item') {
-            child.classList.add('item');
-          }
-        });
-      }
-    });
+    this.updateSlotStyles(nodes);
   }
 
-  updated(changedProperties: Map<string | number | symbol, unknown>) {
-    if (changedProperties.has('columns')) {
-      const slot = this.shadowRoot!.querySelector('slot');
-      const nodes = slot!.assignedElements({ flatten: true });
-
-      nodes.forEach((node) => {
-        if (node.nodeType === Node.ELEMENT_NODE) {
-          (node as HTMLElement).style.gridTemplateColumns = `repeat(${this.columns}, 1fr)`;
-        }
-      });
-    }
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this.mutationObserver.disconnect();
   }
 
   render() {
