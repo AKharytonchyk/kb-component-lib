@@ -44,7 +44,6 @@ export class BackgroundComponent extends LitElement {
     return html`
       <style>
         :host {
-          display: block;
           background: var(--background, #fff);
           --background: ${this.getBackgroundStyle()};
           --text-color: ${this.contrastTextColor};

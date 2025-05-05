@@ -10,11 +10,12 @@ export class AkAlert extends BackgroundComponent {
       all: initial;
       display: block;
       border-radius: var(--border-radius, 4px);
+      box-sizing: border-box;
       padding: var(--padding, 16px);
       color: var(--text-color, #4a2700);
       border: var(--border, 1px solid #ff922b);
       position: relative;
-      box-shadow: '0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06)';
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       background: var(--background, #fff);
     }
 

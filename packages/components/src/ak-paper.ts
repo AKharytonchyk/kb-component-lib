@@ -8,20 +8,21 @@ export class AkPaper extends BackgroundComponent {
   static styles = css`
     :host {
       display: block;
-      
+      border-radius: var(--border-radius, 4px);
+      box-sizing: border-box;
     }
 
     ${defaultStyles}
 
     .paper {
       padding: var(--padding, 16px);
-      border-radius: var(--border-radius, 4px);
       box-shadow: var(
         --shadow,
         0 1px 3px rgba(0, 0, 0, 0.1),
         0 1px 2px rgba(0, 0, 0, 0.06)
       );
       border: var(--border, 1px solid transparent);
+      border-radius: var(--border-radius, 4px);
       color: var(--text-color, #000);
     }
 

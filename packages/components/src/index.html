@@ -64,7 +64,8 @@
     <div class="section">
       <h2>Featured Resources</h2>
       <ak-flex-group gap="16px">
-        <ak-card 
+        <div slot="wrapper">
+          <ak-card 
           image-url="https://picsum.photos/400/200" 
           title="Cloud Security Best Practices" 
           text="Learn how to secure your cloud infrastructure effectively." 
@@ -91,13 +92,15 @@
     <!-- Grid Group Section with Papers -->
     <div class="section">
       <h2>Cloud Computing Insights</h2>
-      <ak-grid-group columns="3" gap="16px">
-        <ak-paper title="Introduction to Cloud" text="Cloud computing is revolutionizing IT infrastructure."></ak-paper>
-        <ak-paper title="Hybrid Cloud" text="Combining private and public clouds for flexibility."></ak-paper>
-        <ak-paper title="Multi-Cloud Strategy" text="Leveraging multiple cloud providers for resilience."></ak-paper>
-        <ak-paper title="Cloud Security" text="Ensuring data protection in the cloud."></ak-paper>
-        <ak-paper title="Cost Management" text="Optimizing cloud expenses effectively."></ak-paper>
-        <ak-paper title="Future of Cloud" text="Exploring trends and innovations in cloud computing."></ak-paper>
+      <ak-grid-group columns="4" gap="16px">
+        <div slot="wrapper">
+          <ak-paper title="Introduction to Cloud" text="Cloud computing is revolutionizing IT infrastructure."></ak-paper>
+          <ak-paper title="Hybrid Cloud" text="Combining private and public clouds for flexibility."></ak-paper>
+          <ak-paper title="Multi-Cloud Strategy" text="Leveraging multiple cloud providers for resilience."></ak-paper>
+          <ak-paper title="Cloud Security" text="Ensuring data protection in the cloud."></ak-paper>
+          <ak-paper title="Cost Management" text="Optimizing cloud expenses effectively."></ak-paper>
+          <ak-paper title="Future of Cloud" text="Exploring trends and innovations in cloud computing."></ak-paper>
+        </div>
       </ak-grid-group>
     </div>
 

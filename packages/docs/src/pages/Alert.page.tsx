@@ -74,7 +74,7 @@ const AlertDocs: React.FC = () => {
   ${iconType ? `icon-type="${iconType}"` : ''}
   ${withCloseButton ? `with-close-button="true"` : ''}
   ${variant === 'filled' && backgroundStyle === 'solid' ? `solid-color="${solidColor}"` : ''}
-  ${variant === 'filled' && backgroundStyle === 'gradient' ? `gradient-color1="${gradientColor1}" gradient-color2="${gradientColor2}" gradient-angle="${gradientAngle}" gradient-percentage="${gradientPercentage}"` : ''}
+  ${variant === 'filled' && backgroundStyle === 'gradient' ? `background-style="gradient" gradient-color1="${gradientColor1}" gradient-color2="${gradientColor2}" gradient-angle="${gradientAngle}" gradient-percentage="${gradientPercentage}"` : ''}
 >
   ${bodyContent ? `<div slot="">${bodyContent}</div>` : ''}
 </ak-alert>`;
