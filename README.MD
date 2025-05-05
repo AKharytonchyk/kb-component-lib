@@ -1,5 +1,3 @@
-<script type="text/javascript" src="https://akharytonchyk.github.io/kb-component-lib/assets/lit-bundle.js"></script>
-
 # KB Component Library
 
 The KB Component Library is a collection of modern, customizable, and reusable web components built using the Lit framework. These components are designed to enhance the user experience of web applications, especially Knowledge Base (KB) pages, blogs, and other web projects.
@@ -30,9 +28,6 @@ The `ak-alert` component is used to display important messages to users. It supp
   <div slot="">Ensure your data is backed up before migrating to the cloud.</div>
 </ak-alert>
 ```
-<ak-alert variant="filled" color="#ff922b" title="Important Notice" icon-type="warn">
-  <div slot="">Ensure your data is backed up before migrating to the cloud.</div>
-</ak-alert>
 
 ### Badge Component
 
