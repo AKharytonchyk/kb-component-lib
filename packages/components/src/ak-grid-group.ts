@@ -39,7 +39,7 @@ export class AkGridGroup extends LitElement {
         Array.from(node.children).forEach((child) => {
           if (child.nodeType === Node.ELEMENT_NODE) {
             child.setAttribute(
-              'style', 'grid-column: span 1;'
+              'style', 'grid-column: span 1; height: fit-content;'
             );
           }
         });
