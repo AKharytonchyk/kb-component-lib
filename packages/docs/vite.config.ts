@@ -13,9 +13,12 @@ export default defineConfig({
       writeBundle() {
         const source = resolve(__dirname, '../components/dist/bundle.min.js');
         const destination = resolve(__dirname, 'dist/assets/lit-bundle.js');
+        const htmlSource = resolve(__dirname, '../components/dist/index.html');
+        const htmlDestination = resolve(__dirname, 'dist/assets/e-index.html');
         const destDir = dirname(destination);
         mkdirSync(destDir, { recursive: true });
         copyFileSync(source, destination);
+        copyFileSync(htmlSource, htmlDestination);
         console.log('Lit bundle copied to assets folder');
       },
     },
