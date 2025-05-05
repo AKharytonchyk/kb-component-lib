@@ -23,6 +23,8 @@ To use the KB Component Library, include the following script in your HTML file:
 
 The `ak-alert` component is used to display important messages to users. It supports different variants, colors, and icons.
 
+![Alert](./assets/alert.png)
+
 ```html
 <ak-alert variant="filled" color="#ff922b" title="Important Notice" icon-type="warn">
   <div slot="">Ensure your data is backed up before migrating to the cloud.</div>
@@ -33,6 +35,8 @@ The `ak-alert` component is used to display important messages to users. It supp
 
 The `ak-badge` component is used to highlight key information with a small, colored label.
 
+![Badges](./assets/badges.png)
+
 ```html
 <ak-badge variant="filled" color="#228be6" radius="12px" size="md">Cloud</ak-badge>
 <ak-badge variant="outline" color="#ff922b" radius="12px" size="sm">Beta</ak-badge>
@@ -41,6 +45,8 @@ The `ak-badge` component is used to highlight key information with a small, colo
 ### Card Component
 
 The `ak-card` component is a versatile container for displaying content such as images, titles, and descriptions.
+
+![Card](./assets/card.png)
 
 ```html
 <ak-card 
